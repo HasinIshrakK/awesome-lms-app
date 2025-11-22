@@ -1,65 +1,127 @@
 import Image from "next/image";
+import { bannerData, features, courses, testimonials, instructors }
+  from "@/data/homepage";
+
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div className="flex min-h-screen items-center justify-center">
+      <p>
+        {/* this is Home */}
+      </p>
+
+
+      <div className="w-full flex flex-col gap-24 py-12">
+
+
+        {/* Banner Section */}
+        <section className="relative overflow-hidden rounded-3xl p-12 bg-linear-to-br from-primary/20 to-secondary/20 border border-base-300 shadow-xl">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,theme(colors.primary/30),transparent)] opacity-40"></div>
+          <div className="relative z-10 text-center max-w-3xl mx-auto">
+            <h1 className="text-5xl font-extrabold mb-4 leading-tight drop-shadow">
+              {bannerData.title}
+            </h1>
+            <p className="text-base opacity-80">
+              {bannerData.subtitle}
+            </p>
+          </div>
+        </section>
+
+
+        {/* Features Section */}
+        <section>
+          <h2 className="text-4xl font-bold mb-12 text-center">Platform Features</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {features.map((f) => (
+              <div
+                key={f.id}
+                className="group card bg-base-100 rounded-2xl p-8 border border-base-300 shadow-md hover:shadow-2xl transition-all hover:-translate-y-1"
+              >
+                <div className="w-12 h-12 mb-4 rounded-xl bg-primary/20 group-hover:bg-primary/30 transition flex items-center justify-center">
+                  <span className="text-primary text-2xl">★</span>
+                </div>
+                <h3 className="text-2xl font-semibold mb-2">{f.title}</h3>
+                <p className="opacity-70 leading-relaxed">{f.description}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+
+        {/* Courses Section */}
+        <section>
+          <h2 className="text-4xl font-bold mb-12 text-center">Popular Courses</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {courses.map((c) => (
+              <div
+                key={c.id}
+                className="card bg-base-100 rounded-2xl shadow-md border border-base-300 hover:shadow-2xl transition-all hover:-translate-y-1 overflow-hidden"
+              >
+                <figure className="h-48 overflow-hidden">
+                  <img
+                    src={c.thumbnail}
+                    alt={c.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition"
+                  />
+                </figure>
+                <div className="card-body">
+                  <h3 className="text-xl font-semibold">{c.title}</h3>
+                  <p className="opacity-70 text-sm">{c.description}</p>
+                  <div className="flex justify-between items-center mt-4">
+                    <span className="font-bold text-lg">${c.price}</span>
+                    <button className="btn btn-primary btn-sm rounded-full">Enroll</button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+
+        {/* Testimonials Section */}
+        <section>
+          <h2 className="text-4xl font-bold mb-12 text-center">What Students Say</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((t) => (
+              <div
+                key={t.id}
+                className="p-8 rounded-2xl bg-base-100 border border-base-300 shadow-md hover:shadow-2xl hover:-translate-y-1 transition-all"
+              >
+                <p className="text-base opacity-80 mb-6 italic leading-relaxed">
+                  “{t.message}”
+                </p>
+                <div>
+                  <h4 className="font-bold text-lg">{t.name}</h4>
+                  <p className="text-xs opacity-60">{t.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+
+        {/* Instructors Section */}
+        <section>
+          <h2 className="text-4xl font-bold mb-12 text-center">Meet Our Instructors</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {instructors.map((i) => (
+              <div
+                key={i.id}
+                className="card bg-base-100 p-8 rounded-2xl border border-base-300 shadow-md hover:shadow-2xl transition hover:-translate-y-1 text-center"
+              >
+                <div className="avatar mb-4 mx-auto">
+                  <div className="w-24 h-24 rounded-full overflow-hidden ring ring-primary/30 ring-offset-base-100 ring-offset-2">
+                    <img src={i.avatar} alt={i.name} />
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold">{i.name}</h3>
+                <p className="opacity-70 text-sm">{i.expertise}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+
     </div>
   );
 }
