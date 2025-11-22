@@ -26,9 +26,9 @@ const Navbar = () => {
                     {l}
                 </ul>
             </div>
-            <div className="navbar-end">
-                <a className="btn">Login</a>
-                <a className="btn">Register</a>
+            <div className="navbar-end space-x-2">
+                <a href="/auth/login" className="btn">Login</a>
+                <a href="/auth/register" className="btn">Register</a>
             </div>
         </div>
     );

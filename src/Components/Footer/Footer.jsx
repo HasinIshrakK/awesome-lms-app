@@ -1,7 +1,7 @@
 const Footer = () => {
     return (
         <div>
-            <footer className="footer sm:footer-horizontal bg-black text-base-content p-10">
+            <footer className="footer grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-around bg-black text-base-content p-10">
                 <nav>
                     <h6 className="footer-title">Services</h6>
                     <a className="link link-hover">Books</a>
@@ -55,6 +55,7 @@ const Footer = () => {
                     </div>
                 </nav>
             </footer>
+            {/* Logo and Copyright section */}
             <footer className="footer footer-horizontal footer-center text-primary-content p-10 pb-4">
                 <aside>
                     <svg
