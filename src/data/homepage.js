@@ -95,18 +95,21 @@ export const instructors = [
     id: 1,
     name: "Sakib Hossain",
     expertise: "Full Stack Developer",
+    experience: 5,
     avatar: "/images/instructor1.jpg",
   },
   {
     id: 2,
     name: "Nadia Sultana",
     expertise: "UI/UX Designer",
+    experience: 8,
     avatar: "/images/instructor2.jpg",
   },
   {
     id: 3,
     name: "Dr. Tanvir Chowdhury",
     expertise: "Data Science Expert",
+    experience: 3,
     avatar: "/images/instructor3.jpg",
   },
 ];

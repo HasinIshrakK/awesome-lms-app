@@ -1,8 +1,10 @@
+import Link from "next/link";
+
 const l = <>
-    <li><a>Submenu 2</a></li>
-    <li><a>Submenu 2</a></li>
-    <li><a>Submenu 2</a></li>
-    <li><a>Submenu 2</a></li>
+    <li><Link href='/'>Submenu 2</Link></li>
+    <li><Link href='/'>Submenu 2</Link></li>
+    <li><Link href='/about'>About Us</Link></li>
+    <li><Link href='/faqs'>FAQ</Link></li>
 </>
 
 const Navbar = () => {
@@ -19,7 +21,7 @@ const Navbar = () => {
                         {l}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">Awesome LMS</a>
+                <Link href='/' className="btn btn-ghost text-xl">Awesome LMS</Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -27,8 +29,8 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end space-x-2">
-                <a href="/auth/login" className="btn">Login</a>
-                <a href="/auth/register" className="btn">Register</a>
+                <Link href="/auth/login" className="btn">Login</Link>
+                <Link href="/auth/register" className="btn">Register</Link>
             </div>
         </div>
     );

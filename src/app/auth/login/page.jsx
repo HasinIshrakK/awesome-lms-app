@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Login = () => {
     return (
         <div className="hero py-6 min-h-screen">
@@ -25,7 +27,7 @@ const Login = () => {
                                     Continue with Google
                                 </p>
                             </button>
-                            <div className='mt-2'>Don't have an account? <a href='/auth/register' className="link link-hover">Register</a></div>
+                            <div className='mt-2'>Don't have an account? <Link href='/auth/register' className="link link-hover">Register</Link></div>
                         </form>
                     </div>
                 </div>

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Register = () => {
     return (
         <div className="hero py-6 min-h-screen">
@@ -30,7 +32,7 @@ const Register = () => {
                                     Continue with Google
                                 </p>
                             </button>
-                            <div className='mt-2'>Already registered? <a href='/auth/login' className="link link-hover">Login</a></div>
+                            <div className='mt-2'>Already registered? <Link href='/auth/login' className="link link-hover">Login</Link></div>
                         </form>
                     </div>
                     <div>
