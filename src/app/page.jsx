@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { bannerData, features, courses, testimonials, instructors }
   from "@/data/homepage";
+import Card from "@/Components/Cards/Card";
 
 
 export default function Home() {
@@ -51,28 +52,9 @@ export default function Home() {
         {/* Courses Section */}
         <section>
           <h2 className="text-4xl font-bold mb-12 text-center">Popular Courses</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {courses.map((c) => (
-              <div
-                key={c.id}
-                className="card bg-base-100 rounded-2xl shadow-md border border-base-300 hover:shadow-2xl transition-all hover:-translate-y-1 overflow-hidden"
-              >
-                <figure className="h-48 overflow-hidden">
-                  <img
-                    src={c.thumbnail}
-                    alt={c.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition"
-                  />
-                </figure>
-                <div className="card-body">
-                  <h3 className="text-xl font-semibold">{c.title}</h3>
-                  <p className="opacity-70 text-sm">{c.description}</p>
-                  <div className="flex justify-between items-center mt-4">
-                    <span className="font-bold text-lg">${c.price}</span>
-                    <button className="btn btn-primary btn-sm rounded-full">Enroll</button>
-                  </div>
-                </div>
-              </div>
+              <Card c={c}></Card>
             ))}
           </div>
         </section>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const l = <>
-    <li><Link href='/'>Submenu 2</Link></li>
+    <li><Link href='/courses'>All Courses</Link></li>
     <li><Link href='/'>Submenu 2</Link></li>
     <li><Link href='/about'>About Us</Link></li>
     <li><Link href='/faqs'>FAQ</Link></li>
