@@ -5,12 +5,12 @@ export default function CourseDetails({ course }) {
     return (
         <div className="max-w-4xl mx-auto bg-base-100 shadow-lg rounded-lg overflow-hidden my-10 p-6">
             {/* Image & Title */}
+            <img
+                src={course.image}
+                alt={course.title}
+                className="w-full h-48 sm:h-64 md:h-80 border mb-6 rounded-lg object-cover"
+            />
             <div className="flex flex-col md:flex-row gap-6">
-                <img
-                    src={course.image}
-                    alt={course.title}
-                    className="w-full md:w-1/3 h-auto rounded-lg object-cover"
-                />
                 <div className="flex-1">
                     <h1 className="text-3xl font-bold mb-2">{course.title}</h1>
 

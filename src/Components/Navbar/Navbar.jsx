@@ -40,10 +40,16 @@ const Navbar = () => {
             <div className="navbar-end space-x-2">
                 {session ? (
                     <>
-                        <span>Hi, {session.user.name}</span>
-                        <button onClick={() => signOut({ callbackUrl: '/' })} className="btn ml-2">
-                            Sign Out
-                        </button>
+                        <div className="dropdown dropdown-left justify-end dropdown-hover">
+                            <div tabIndex={0} role="button" className="btn m-1">{session.user.name}</div>
+                            <ul tabIndex="-1" className="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-sm">
+                                <li> <Link href="/add-course" className="">Add Course</Link></li>
+                                <li> <Link href="/my-courses" className="">My Courses</Link></li>
+                                <li><button onClick={() => signOut({ callbackUrl: '/' })} className=" ml-2">
+                                    Sign Out
+                                </button></li>
+                            </ul>
+                        </div>
                     </>
                 ) : (
                     <>

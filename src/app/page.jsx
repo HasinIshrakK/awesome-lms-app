@@ -1,29 +1,44 @@
 import { bannerData, features, testimonials, instructors }
   from "@/data/homepage";
 import Cards from "@/Components/Cards/Cards";
+import Link from "next/link";
 
 
 export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center">
-      <p>
-        {/* this is Home */}
-      </p>
 
 
       <div className="w-full flex flex-col gap-24 py-12">
 
+        {/* Hero Section */}
+        <section className="relative bg-linear-to-r rounded-2xl from-indigo-600 via-cyan-600 to-green-600 text-white">
+          <div className="container mx-auto px-6 py-32 flex flex-col-reverse md:flex-row items-center justify-between">
 
-        {/* Banner Section */}
-        <section className="relative overflow-hidden rounded-3xl p-12 bg-linear-to-br from-primary/20 to-secondary/20 border border-base-300 shadow-xl">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,theme(colors.primary/30),transparent)]"></div>
-          <div className="relative z-9 text-center max-w-3xl mx-auto">
-            <h1 className="text-5xl font-extrabold mb-4 leading-tight drop-shadow">
-              {bannerData.title}
-            </h1>
-            <p className="text-base opacity-80">
-              {bannerData.subtitle}
-            </p>
+            <div className="md:w-1/2 text-center md:text-left">
+              <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-6">
+                Learn Anytime, Anywhere
+              </h1>
+              <p className="text-lg md:text-xl mb-8">
+                Join thousands of learners and explore courses from top mentors. Master skills in your own pace.
+              </p>
+              <div className="flex justify-center md:justify-start gap-4">
+                <Link href="/courses" className="bg-white text-indigo-600 font-semibold px-6 py-3 rounded-lg shadow hover:shadow-lg transition">
+                  Browse Courses
+                </Link>
+                <Link href="/auth/register" className="border border-white font-semibold px-6 py-3 rounded-lg hover:bg-white hover:text-indigo-600 transition">
+                  Sign Up
+                </Link>
+              </div>
+            </div>
+
+            <div className="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+              <img
+                src="/image.png"
+                alt="Hero illustration"
+                className="w-full max-w-lg rounded-lg shadow-xl"
+              />
+            </div>
           </div>
         </section>
 
@@ -95,6 +110,20 @@ export default function Home() {
                 <p className="opacity-70 text-sm">{i.expertise}</p>
               </div>
             ))}
+          </div>
+        </section>
+
+
+        {/* Banner Section */}
+        <section className="relative overflow-hidden rounded-3xl p-12 bg-linear-to-br from-primary/20 to-secondary/20 border border-base-300 shadow-xl">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,theme(colors.primary/30),transparent)]"></div>
+          <div className="relative z-9 text-center max-w-3xl mx-auto">
+            <h1 className="text-5xl font-extrabold mb-4 leading-tight drop-shadow">
+              {bannerData.title}
+            </h1>
+            <p className="text-base opacity-80">
+              {bannerData.subtitle}
+            </p>
           </div>
         </section>
       </div>
