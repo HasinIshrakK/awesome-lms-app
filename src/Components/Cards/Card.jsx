@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const Card = ({ c }) => {
     return (
         <div
@@ -14,11 +16,16 @@ const Card = ({ c }) => {
             <div className="card-body">
                 <h3 className="text-xl font-semibold">{c.title}</h3>
                 <p className="opacity-70 text-sm">{c.shortDescription}</p>
-                <div className="font-bold text-yellow-500 flex gap-1 items-center"><img className="h-3" src="/star.png" alt="Star" /><span>{c.rating}</span></div>
+                <div className="font-bold text-yellow-500 flex gap-1 items-center">
+                    <img className="h-3" src="/star.png" alt="Star" />
+                    <span>{c.rating}</span>
+                </div>
                 <div className="flex justify-between items-center mt-4">
                     <span className="font-bold text-lg">${c.price}</span>
                     <div>
-                        <button className="btn btn-primary btn-sm rounded-full m-1">View Details</button>
+                        <Link href={`http://localhost:3000/courses/${c._id}`}>
+                            <button className="btn btn-primary btn-sm rounded-full m-1">View Details</button>
+                        </Link>
                         <button className="btn btn-primary btn-outline btn-sm rounded-full m-1">Enroll Now</button>
                     </div>
                 </div>
