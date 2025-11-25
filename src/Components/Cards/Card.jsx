@@ -1,19 +1,20 @@
 const Card = ({ c }) => {
     return (
         <div
-            key={c.id}
+            key={c._id}
             className="card bg-base-100 rounded-2xl shadow-md border border-base-300 hover:shadow-2xl transition-all hover:-translate-y-1 overflow-hidden"
         >
             <figure className="h-48 overflow-hidden">
                 <img
-                    src={c.thumbnail}
+                    src={c.image}
                     alt={c.title}
                     className="w-full h-full object-cover group-hover:scale-105 transition"
                 />
             </figure>
             <div className="card-body">
                 <h3 className="text-xl font-semibold">{c.title}</h3>
-                <p className="opacity-70 text-sm">{c.description}</p>
+                <p className="opacity-70 text-sm">{c.shortDescription}</p>
+                <div className="font-bold text-yellow-500 flex gap-1 items-center"><img className="h-3" src="/star.png" alt="Star" /><span>{c.rating}</span></div>
                 <div className="flex justify-between items-center mt-4">
                     <span className="font-bold text-lg">${c.price}</span>
                     <div>

@@ -32,35 +32,6 @@ export const features = [
 ];
 
 // ----------------------
-// Courses Section
-// ----------------------
-export const courses = [
-  {
-    id: 1,
-    title: "Full Stack Web Development",
-    thumbnail: "/images/course1.jpg",
-    description:
-      "Learn MERN stack from scratch with real-world hands-on projects.",
-    price: 49,
-  },
-  {
-    id: 2,
-    title: "UI/UX Design Fundamentals",
-    thumbnail: "/images/course2.jpg",
-    description: "Master design thinking, wireframing, and visual interfaces.",
-    price: 35,
-  },
-  {
-    id: 3,
-    title: "Python for Beginners",
-    thumbnail: "/images/course3.jpg",
-    description:
-      "Start coding with Python — perfect for students and beginners.",
-    price: 29,
-  },
-];
-
-// ----------------------
 // Testimonials Section
 // ----------------------
 export const testimonials = [

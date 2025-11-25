@@ -1,7 +1,6 @@
-import Image from "next/image";
-import { bannerData, features, courses, testimonials, instructors }
+import { bannerData, features, testimonials, instructors }
   from "@/data/homepage";
-import Card from "@/Components/Cards/Card";
+import Cards from "@/Components/Cards/Cards";
 
 
 export default function Home() {
@@ -17,8 +16,8 @@ export default function Home() {
 
         {/* Banner Section */}
         <section className="relative overflow-hidden rounded-3xl p-12 bg-linear-to-br from-primary/20 to-secondary/20 border border-base-300 shadow-xl">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,theme(colors.primary/30),transparent)] opacity-40"></div>
-          <div className="relative z-10 text-center max-w-3xl mx-auto">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,theme(colors.primary/30),transparent)]"></div>
+          <div className="relative z-9 text-center max-w-3xl mx-auto">
             <h1 className="text-5xl font-extrabold mb-4 leading-tight drop-shadow">
               {bannerData.title}
             </h1>
@@ -52,11 +51,7 @@ export default function Home() {
         {/* Courses Section */}
         <section>
           <h2 className="text-4xl font-bold mb-12 text-center">Popular Courses</h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {courses.map((c) => (
-              <Card c={c}></Card>
-            ))}
-          </div>
+          <Cards home={true} />
         </section>
 
 

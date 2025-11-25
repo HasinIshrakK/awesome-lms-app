@@ -2,15 +2,21 @@
 import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 
-const l = <>
-    <li><Link href='/courses'>All Courses</Link></li>
-    <li><Link href='/'>Submenu 2</Link></li>
-    <li><Link href='/about'>About Us</Link></li>
-    <li><Link href='/faqs'>FAQ</Link></li>
-</>
-
 const Navbar = () => {
     const { data: session } = useSession();
+
+    const l = <>
+        <li><Link href='/courses'>All Courses</Link></li>
+        {
+            session && <>
+                <li><Link href='/add-course'>Add Course</Link></li>
+                <li><Link href='/my-courses'>My Courses</Link></li>
+            </>
+        }
+        <li><Link href='/about'>About Us</Link></li>
+        <li><Link href='/faqs'>FAQ</Link></li>
+    </>
+
     return (
         <div className="navbar bg-base-100 shadow-sm sticky top-0 z-10">
             <div className="navbar-start">
