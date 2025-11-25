@@ -1,8 +1,23 @@
 'use client'
 import { signIn } from 'next-auth/react';
 import Link from "next/link";
+import { useState } from "react";
 
 const Login = () => {
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        const res = await signIn("credentials", {
+            email,
+            password,
+            redirect: true,
+            callbackUrl: "/",
+        });
+    };
+
     return (
         <div className="hero py-6 min-h-screen">
             <div className="hero-content flex-col">
@@ -14,12 +29,12 @@ const Login = () => {
                 </div>
                 <div className="card bg-base-100 w-72 sm:w-96 max-w-sm shrink-0 shadow-2xl">
                     <div className="card-body">
-                        <form>
+                        <form onSubmit={handleLogin}>
                             <fieldset className="fieldset">
                                 <label className="label">Email</label>
-                                <input type="email" className="input" placeholder="Email" />
+                                <input type="email" className="input" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} />
                                 <label className="label">Password</label>
-                                <input type="password" className="input" placeholder="Password" />
+                                <input type="password" className="input" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
                                 <div><a className="link link-hover">Forgot password?</a></div>
                                 <button className="btn btn-neutral mt-4">Login</button>
                             </fieldset>

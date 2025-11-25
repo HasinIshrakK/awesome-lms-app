@@ -6,9 +6,9 @@ export default function ClientWrapper({ children }) {
     return (
         <SessionProvider>
             <Navbar />
-            <div className="sm:mx-20 mx-6">
+            {/* <div className="sm:mx-20 mx-6">
                 {children}
-            </div>
+            </div> */}
         </SessionProvider>
     )
 }

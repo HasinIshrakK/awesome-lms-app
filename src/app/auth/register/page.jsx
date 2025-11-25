@@ -1,8 +1,34 @@
 'use client'
 import { signIn } from 'next-auth/react';
 import Link from "next/link";
+import { useState } from "react";
 
 const Register = () => {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
+
+        const res = await fetch("/api/register", {
+            method: "POST",
+            body: JSON.stringify({ name, email, password }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+            await signIn('credentials', {
+                email,
+                password,
+                redirect: true,
+                callbackUrl: "/"
+            });
+        }
+        else alert(data.error);
+    };
+
     return (
         <div className="hero py-6 min-h-screen">
             <div className="hero-content flex-col">
@@ -14,18 +40,28 @@ const Register = () => {
                 </div>
                 <div className="card bg-base-100 w-full sm:w-96 max-w-sm shrink-0 shadow-2xl">
                     <div className="card-body">
-                        <form>
+                        <form onSubmit={handleRegister}>
                             <fieldset className="fieldset">
                                 <label className="label">Name</label>
-                                <input type="text" name='name' className="input" placeholder="Your Name" />
-                                <label className="label">Photo-URL</label>
-                                <input type="text" name='photo' className="input" placeholder="Your Photo's URL" />
+                                <input type="text" name='name' className="input" placeholder="Your Name" value={name} onChange={e => setName(e.target.value)} />
+
+
+                                {/* We don't need photo for now */}
+
+                                {/* <label className="label">Photo-URL</label>
+                                <input type="text" name='photo' className="input" placeholder="Your Photo's URL" /> */}
+
                                 <label className="label">Email</label>
-                                <input type="email" name='email' className="input" placeholder="Your Email" />
+                                <input type="email" name='email' className="input" placeholder="Your Email" value={email} onChange={e => setEmail(e.target.value)} />
                                 <label className="label">Password</label>
-                                <input type="password" name='password' className="input" placeholder="Password" />
-                                <label className="label">Confirm Password</label>
-                                <input type="password" name='password2' className="input" placeholder="Confirm Password" />
+                                <input type="password" name='password' className="input" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+
+
+                                {/* Password confirmation is left for free time */}
+
+                                {/* <label className="label">Confirm Password</label>
+                                <input type="password" name='password2' className="input" placeholder="Confirm Password" /> */}
+
                                 <button className="btn btn-neutral mt-4">Register</button>
                             </fieldset>
                             <button onClick={(e) => {
