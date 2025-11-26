@@ -14,7 +14,7 @@ export default function CoursePage() {
   useEffect(() => {
     async function loadCourse() {
       try {
-        const res = await fetch(`http://localhost:4000/courses/${id}`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses/${id}`);
         const data = await res.json();
         setCourse(data);
       } catch (err) {

@@ -13,7 +13,7 @@ export default function Home() {
 
         {/* Hero Section */}
         <section className="relative bg-linear-to-r rounded-2xl from-indigo-600 via-cyan-600 to-green-600 text-white">
-          <div className="container mx-auto px-6 py-32 flex flex-col-reverse md:flex-row items-center justify-between">
+          <div className="container mx-auto px-6 py-16 lg:py-24 flex flex-col-reverse md:flex-row items-center justify-between">
 
             <div className="md:w-1/2 text-center md:text-left">
               <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-6">
@@ -32,9 +32,9 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+            <div className="md:w-1/2 mb-10 md:mb-0 ms-2 flex justify-center">
               <img
-                src="/image.png"
+                src="/banner.png"
                 alt="Hero illustration"
                 className="w-full max-w-lg rounded-lg shadow-xl"
               />
@@ -116,9 +116,9 @@ export default function Home() {
 
         {/* Banner Section */}
         <section className="relative overflow-hidden rounded-3xl p-12 bg-linear-to-br from-primary/20 to-secondary/20 border border-base-300 shadow-xl">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,theme(colors.primary/30),transparent)]"></div>
+          <div className="absolute inset-0 bg-linear-to-r from-indigo-600 to-cyan-600"></div>
           <div className="relative z-9 text-center max-w-3xl mx-auto">
-            <h1 className="text-5xl font-extrabold mb-4 leading-tight drop-shadow">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-4 leading-tight drop-shadow">
               {bannerData.title}
             </h1>
             <p className="text-base opacity-80">

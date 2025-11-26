@@ -23,7 +23,7 @@ const Card = ({ c }) => {
                 <div className="flex justify-between items-center mt-4">
                     <span className="font-bold text-lg">${c.price}</span>
                     <div>
-                        <Link href={`http://localhost:3000/courses/${c._id}`}>
+                        <Link href={`/courses/${c._id}`}>
                             <button className="btn btn-primary btn-sm rounded-full m-1">View Details</button>
                         </Link>
                         <button className="btn btn-primary btn-outline btn-sm rounded-full m-1">Enroll Now</button>

@@ -10,7 +10,7 @@ const Cards = ({ home }) => {
     useEffect(() => {
         async function loadCourses() {
             try {
-                const res = await fetch("http://localhost:4000/courses");
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`);
                 const data = await res.json();
                 setCourses(data);
             } finally {

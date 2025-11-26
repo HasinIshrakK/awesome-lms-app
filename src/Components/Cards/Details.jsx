@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function CourseDetails({ course }) {
 
     return (
@@ -66,9 +68,12 @@ export default function CourseDetails({ course }) {
             </div>
 
             {/* Actions */}
-            <div className="mt-6 flex gap-4">
+            <div className="mt-6 flex flex-wrap gap-4">
                 <button className="btn btn-primary">Enroll Now</button>
-                <button className="btn btn-outline">Add to Wishlist</button>
+                <button className="btn btn-primary btn-outline">Add to Wishlist</button>
+                <Link href='/courses'>
+                    <button className="btn btn-outline">All Courses</button>
+                </Link>
             </div>
         </div>
     );
