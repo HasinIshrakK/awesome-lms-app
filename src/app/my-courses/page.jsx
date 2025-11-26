@@ -2,24 +2,32 @@
 import { useEffect, useState } from "react";
 import MyCard from "@/Components/Cards/MyCard";
 import SearchBar from "@/Components/SearchBar";
+import { useSession } from "next-auth/react";
 
 const MyCourses = () => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
+    const { data: session, status } = useSession();
 
     useEffect(() => {
+        if (!session?.user?.email) return;
+
         async function loadCourses() {
+            setLoading(true);
             try {
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`);
+                const res = await fetch(
+                    `${process.env.NEXT_PUBLIC_API_URL}/my?email=${session.user.email}`
+                );
                 const data = await res.json();
                 setCourses(data);
-            } finally {
+            }
+            finally {
                 setLoading(false);
             }
         }
 
         loadCourses();
-    }, []);
+    }, [session]);
 
 
     if (loading) return <p>Loading...</p>;

@@ -25,9 +25,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClientWrapper>{children}</ClientWrapper>
-        <div className="sm:mx-20 mx-6">
+        {/* <div className="sm:mx-20 mx-6">
           {children}
-        </div>
+        </div> */}
         <Footer></Footer>
       </body>
     </html>

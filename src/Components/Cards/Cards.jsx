@@ -30,12 +30,12 @@ const Cards = ({ home }) => {
             {
                 home ? <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-6">
                     {filtered.slice(0, 6).map((c) => (
-                        <Card c={c}></Card>
+                        <Card key={c._id} c={c}></Card>
                     ))}
                 </div> :
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-6">
                         {courses.map((c) => (
-                            <Card c={c}></Card>
+                            <Card key={c._id} c={c}></Card>
                         ))}
                     </div>
             }

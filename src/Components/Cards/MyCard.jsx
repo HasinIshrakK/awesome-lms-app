@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 const MyCard = ({ course }) => {
     if (!course) return <p>No course found.</p>;
 
@@ -37,7 +39,9 @@ const MyCard = ({ course }) => {
                 </p>
 
                 <div className="mt-4 flex gap-3">
-                    <button className="btn btn-primary">Edit</button>
+                    <Link href={`/courses/${course._id}`}>
+                        <button className="btn btn-primary">View Details</button>
+                    </Link>
                     <button className="btn btn-error">Delete</button>
                 </div>
             </div>

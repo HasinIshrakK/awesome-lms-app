@@ -1,8 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 const AddCourse = () => {
-    const [formData, setFormData] = useState({
+    const { data: session, status } = useSession();
+    const loadingSession = status === "loading";
+
+    const initialForm = useState({
         title: "", shortDescription: "",
         fullDescription: "", category: "",
         image: "", mentor: "",
@@ -10,8 +15,18 @@ const AddCourse = () => {
         discountPrice: "", difficulty: "",
         duration: "", lessons: "", rating: "",
         language: "", lastUpdated: "",
-        tags: "",
+        tags: "", email: "",
     });
+
+
+    const [formData, setFormData] = useState(initialForm);
+    const [submitting, setSubmitting] = useState(false);
+
+    useEffect(() => {
+        if (session?.user?.email) {
+            setFormData(prev => ({ ...prev, email: session.user.email }));
+        }
+    }, [session]);
 
     function handleChange(e) {
         setFormData({
@@ -20,12 +35,47 @@ const AddCourse = () => {
         });
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        console.log("FORM DATA:", formData);
+        let r = Number((Math.random() * 5).toFixed(1));
+        let today = new Date();
+        let formattedDate = today.toISOString().split("T")[0];
+
+        const finalData = {
+            ...formData,
+            rating: r,
+            lastUpdated: formattedDate,
+        };
+        try {
+            const res = await fetch("http://localhost:4000/courses", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(finalData),
+            });
+
+            if (!res.ok) throw new Error("Failed to post course");
+
+            toast.success("Course added successfully!");
+            setFormData(initialForm);
+        } catch (err) {
+            console.error(err);
+            toast.error("Something went wrong!");
+        } finally {
+            setSubmitting(false);
+        }
+
+
+        console.log("FORM DATA:", finalData);
     }
+
+    if (loadingSession) return <p>Loading session...</p>;
+    if (!session) return <p>You must be logged in to add a course.</p>;
+
     return (
         <div className='min-h-screen flex flex-col lg:flex-row md:gap-x-20 justify-center items-center p-6'>
+            <Toaster></Toaster>
 
             <div className="text-center">
                 <h1 className="text-3xl sm:text-4xl xl:text-5xl 2xl:text-6xl font-bold">Post Now!</h1>
@@ -80,6 +130,13 @@ const AddCourse = () => {
                             <label className="label">Mentor Name</label>
                             <input type="text" name="mentor" className="input w-full" placeholder="Instructor Name"
                                 value={formData.mentor} onChange={handleChange} />
+                        </div>
+
+                        {/* Mentor Email */}
+                        <div>
+                            <label className="label">Mentor Email</label>
+                            <input type="email" name="mentor" className="input w-full" placeholder="Instructor Name"
+                                value={session.user.email} readOnly />
                         </div>
 
                         {/* Mentor Designation */}

@@ -17,14 +17,7 @@ export default function CourseDetails({ course }) {
                     <h1 className="text-3xl font-bold mb-2">{course.title}</h1>
 
                     <div className="flex flex-wrap gap-2 mb-4">
-                        {course.tags?.map((tag) => (
-                            <span
-                                key={tag}
-                                className="bg-base-100 text-primary px-2 py-1 rounded text-sm"
-                            >
-                                {tag}
-                            </span>
-                        ))}
+                        {course.tags}
                     </div>
 
                     <p className="text-gray-400">{course.fullDescription}</p>
