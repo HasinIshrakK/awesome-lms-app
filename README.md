@@ -4,6 +4,9 @@ A modern Learning Management System (LMS) built with **Next.js**, **NextAuth.js*
 
 ---
 
+### Live Link:
+https://awesome-lms-app.vercel.app/
+
 ## 🔹 Short Project Description
 
 This project enables users to manage and explore online courses. Features include:
