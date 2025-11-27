@@ -3,15 +3,19 @@ import { useEffect, useState } from "react";
 import MyCard from "@/Components/Cards/MyCard";
 import SearchBar from "@/Components/SearchBar";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import useLocalSession from "../../../utils/useLocalSession";
 
 const MyCourses = () => {
+
+    const router = useRouter();
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { data: session, status } = useSession();
+    const { data: session } = useSession();
+
+    const ss = useLocalSession();
 
     useEffect(() => {
-        if (!session?.user?.email) return;
-
         async function loadCourses() {
             setLoading(true);
             try {
@@ -20,17 +24,17 @@ const MyCourses = () => {
                 );
                 const data = await res.json();
                 setCourses(data);
-            }
-            finally {
+            } finally {
                 setLoading(false);
             }
         }
 
         loadCourses();
-    }, [session]);
-
+    }, [session, ss]);
 
     if (loading) return <p>Loading...</p>;
+    if (!ss) return router.push("/auth/login");
+
 
     return (
         <div>
@@ -48,7 +52,7 @@ const MyCourses = () => {
                 </div>
             </div>
             {courses.map((course) => (
-                <MyCard course={course}></MyCard>
+                <MyCard setCourses={setCourses} courses={courses} course={course}></MyCard>
             ))}
         </div>
     );

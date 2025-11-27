@@ -1,11 +1,21 @@
 "use client";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import useLocalSession from "../../../utils/useLocalSession";
 
 const AddCourse = () => {
+    const router = useRouter();
     const { data: session, status } = useSession();
     const loadingSession = status === "loading";
+    const ss = useLocalSession();
+
+    useEffect(() => {
+        if (session?.user?.email) {
+            setFormData(prev => ({ ...prev, email: session.user.email }));
+        }
+    }, [session]);
 
     const initialForm = useState({
         title: "", shortDescription: "",
@@ -22,11 +32,6 @@ const AddCourse = () => {
     const [formData, setFormData] = useState(initialForm);
     const [submitting, setSubmitting] = useState(false);
 
-    useEffect(() => {
-        if (session?.user?.email) {
-            setFormData(prev => ({ ...prev, email: session.user.email }));
-        }
-    }, [session]);
 
     function handleChange(e) {
         setFormData({
@@ -47,7 +52,7 @@ const AddCourse = () => {
             lastUpdated: formattedDate,
         };
         try {
-            const res = await fetch("http://localhost:4000/courses", {
+            const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/courses`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -71,7 +76,7 @@ const AddCourse = () => {
     }
 
     if (loadingSession) return <p>Loading session...</p>;
-    if (!session) return <p>You must be logged in to add a course.</p>;
+    if (!ss) return router.push("/auth/login");
 
     return (
         <div className='min-h-screen flex flex-col lg:flex-row md:gap-x-20 justify-center items-center p-6'>

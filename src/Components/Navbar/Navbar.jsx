@@ -45,7 +45,12 @@ const Navbar = () => {
                             <ul tabIndex="-1" className="dropdown-content menu bg-base-200 rounded-box z-1 w-52 p-2 shadow-sm">
                                 <li> <Link href="/add-course" className="">Add Course</Link></li>
                                 <li> <Link href="/my-courses" className="">My Courses</Link></li>
-                                <li><button onClick={() => signOut({ callbackUrl: '/' })} className=" ml-2">
+                                <li><button onClick={() => {
+                                    signOut({ callbackUrl: '/' });
+                                    localStorage.removeItem("isLoggedIn", "true");
+                                    localStorage.removeItem("userId", session.user.id);
+                                    localStorage.removeItem("email", session.user.email);
+                                }} className=" ml-2">
                                     Sign Out
                                 </button></li>
                             </ul>
@@ -53,8 +58,13 @@ const Navbar = () => {
                     </>
                 ) : (
                     <>
-                        <Link href="/auth/login" className="btn">Login</Link>
-                        <Link href="/auth/register" className="btn">Register</Link>
+                        <div className="hidden sm:block space-x-2">
+                            <Link href="/auth/login" className="btn">Login</Link>
+                            <Link href="/auth/register" className="btn">Register</Link>
+                        </div>
+                        <div className="sm:hidden">
+                            <Link href="/auth/login" className="btn">Login</Link>
+                        </div>
                     </>
                 )}
 
